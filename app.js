@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-// importiamo modulo router i post
+// importiamo modulo router 
 const movieRouter = require("./routers/movies")
 
 // usiamo il middleware static di express (per rendere disponibile i file statici)
@@ -12,8 +12,8 @@ app.use(express.static('public'));
 //body parser
 app.use(express.json());
 
-// rotte per i post
-app.use("/posts", movieRouter);
+// rotte 
+app.use("/movies", movieRouter);
 
 // impostiamo la rotta di home
 app.get("/", (req, res) => {
