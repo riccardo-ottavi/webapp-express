@@ -14,7 +14,7 @@ function index(req, res) {
 function show(req, res) {
     
     const id = req.params.id
-    console.log("ID richiesto:", id); // 👈 Aggiungi questo
+    console.log("ID richiesto:", id); // DEBUG
     const sql = `
         SELECT *
         FROM movies
