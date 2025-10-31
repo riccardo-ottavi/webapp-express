@@ -12,11 +12,18 @@ const notFound = require("./middlewares/notFound")
 //importo middleware errorServer
 const errorServer = require("./middlewares/errorServer")
 
+//import middleware gestione path immagini
+const imagePath = require("./middlewares/imagePath")
+
+
 // usiamo il middleware static di express (per rendere disponibile i file statici)
 app.use(express.static('public'));
 
 //body parser
 app.use(express.json());
+
+//registro middleware gestione paths
+app.use(imagePath);
 
 // rotte 
 app.use("/movies", movieRouter);

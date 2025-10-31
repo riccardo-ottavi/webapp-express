@@ -31,6 +31,7 @@ function show(req, res) {
 
         // creiamo oggetto singolo film
         const singleMovie= movieResult[0];
+        //modifico la proprietà image dell'oggetto 
         singleMovie.image = req.imagePath + singleMovie.image;
 
 
