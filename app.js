@@ -1,6 +1,7 @@
 //inizializzazione server
 const express = require('express')
 const app = express()
+const cors = require("cors");
 const port = 3000
 
 // importiamo modulo router 
@@ -15,6 +16,9 @@ const errorServer = require("./middlewares/errorServer")
 //import middleware gestione path immagini
 const imagePath = require("./middlewares/imagePath")
 
+app.use(cors({
+origin: 'http://localhost:5173' 
+}));
 
 // usiamo il middleware static di express (per rendere disponibile i file statici)
 app.use(express.static('public'));
