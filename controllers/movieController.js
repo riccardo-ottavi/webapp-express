@@ -28,7 +28,7 @@ function show(req, res) {
     // prepariamo query per singolo film
     const movieSql = 'SELECT * FROM movies WHERE id = ?';
 
-    // prepariamo la query per reviews del book
+    // prepariamo la query per reviews del film
     const reviewSql = 'SELECT * FROM reviews WHERE movie_id = ?';
 
     // aggiungiamo la connesione per la richiesta
@@ -57,4 +57,27 @@ function show(req, res) {
     });
 }
 
-module.exports = { index, show }
+//store review
+function storeReview(req, res) {
+
+    // recuperiamo id da param
+    const id = req.params.id;
+
+    //recupero i dati nel body
+    const {name, vote, text} = req.body;
+
+    //prepariamo la query per la chiamata al db
+    const sql = 'INSERT INTO `reviews` (`name`, `vote`, `text`, `movie_id`) VALUES (?,?,?,?)';
+
+    //esecuzione query
+    connection.query(sql, [name, vote, text, id], (err, result) => {
+        if(err) return res.status(500).json({error: 'Database query failed'});
+        //se va a buon fine
+        res.status(201);
+        res.json({ id: result.insertId, message: 'Review added'});
+    })
+
+}   
+
+
+module.exports = { index, show, storeReview }
